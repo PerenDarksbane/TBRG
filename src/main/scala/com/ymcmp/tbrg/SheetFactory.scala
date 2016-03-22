@@ -12,7 +12,7 @@ object SheetFactory {
     val NECROMANCER = Value
     val PRIEST = Value
     val WARLOCK = Value
-    val PHASE KNIGHT = Value
+    val PHASEKNIGHT = Value
   }
 
   def makeSheet(t: Classes.Value, r: Race.Value): GenericSheet = {
@@ -21,7 +21,7 @@ object SheetFactory {
       case Classes.NECROMANCER => new Necromancer(r)
       case Classes.PRIEST => new Priest(r)
       case Classes.WARLOCK => new Warlock(r)
-      case Classes.PHASE KNIGHT => new Phase Knight(r)
+      case Classes.PHASEKNIGHT => new Phase Knight(r)
     }
   }
 }
