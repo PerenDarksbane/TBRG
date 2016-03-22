@@ -15,5 +15,4 @@ libraryDependencies ++= Seq(
 
 initialCommands := "import com.ymcmp.tbrg._"
 
-
 fork in run := true
