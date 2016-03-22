@@ -1,0 +1,43 @@
+New log file opened at Mon Mar 21 19:59:27 EDT 2016 by 3280@DESKTOP-GVSLK2T
+Taking next connection to: 50722
+New client attempting to connect on port: 50723-50722
+  Address = /192.168.1.75:50722
+This client on port 50723 has uuid 433a3deb-30fe-4c75-9e8a-5dc6a8a0276c configName activator humanReadableName Activator protocolVersion 3 featureTags Vector()
+Connected Clients: activator-433a3deb-30fe-4c75-9e8a-5dc6a8a0276c
+Taking next connection to: 50722
+New client attempting to connect on port: 50724-50722
+  Address = /192.168.1.75:50722
+Handshake exception on socket: 50724
+sbt.impl.ipc.HandshakeException: Unable to perform handshake
+	at sbt.impl.ipc.Peer.handshake(IPC.scala:46)
+	at sbt.impl.ipc.MultiClientServer.<init>(IPC.scala:150)
+	at sbt.server.SbtServerSocketHandler$$anon$1.run(SbtServerSocketHandler.scala:43)
+Caused by: java.net.SocketException: Software caused connection abort: recv failed
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.socketRead(SocketInputStream.java:116)
+	at java.net.SocketInputStream.read(SocketInputStream.java:170)
+	at java.net.SocketInputStream.read(SocketInputStream.java:141)
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:246)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:265)
+	at java.io.DataInputStream.readInt(DataInputStream.java:387)
+	at sbt.impl.ipc.Peer.receive(IPC.scala:95)
+	at sbt.impl.ipc.Peer.handshake(IPC.scala:49)
+	... 2 more
+Taking next connection to: 50722
+New client attempting to connect on port: 50725-50722
+  Address = /192.168.1.75:50722
+This client on port 50725 has uuid 23d827ec-5c02-4534-a22c-a477fe9269bf configName activator humanReadableName Activator protocolVersion 3 featureTags Vector()
+Connected Clients: activator-433a3deb-30fe-4c75-9e8a-5dc6a8a0276c, activator-23d827ec-5c02-4534-a22c-a477fe9269bf
+Taking next connection to: 50722
+Checking to see if clients are empty...
+We have 1 non-daemon clients, continuing serving connections.
+Taking next connection to: 50722
+Checking to see if clients are empty...
+We have 1 non-daemon clients, continuing serving connections.
+Taking next connection to: 50722
+Checking to see if clients are empty...
+No non-daemon clients connected after 3 min. Shutting down.
+Server socket thread exiting.
+0 clients open, will close them...
+All client sockets have been closed.
+Closing the 3280@DESKTOP-GVSLK2T logs at Mon Mar 21 20:08:27 EDT 2016, goodbye.

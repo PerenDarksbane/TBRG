@@ -16,5 +16,6 @@ object Dice {
   def d6: Int = d(6)
   def d8: Int = d(8)
   def d10: Int = d(10)
+  def d12: Int = d(12)
   def d20: Int = d(20)
 }
