@@ -676,3 +676,10 @@ Total time: 0 s, completed Mar 21, 2016 8:37:14 PM
 > server-post-command-error-handler
 > server-post-command-cleanup
 > server-handle-next-server-request
+Done executing sbt server engine, result Right(Exit(0))
+Closing listening server socket
+Waiting for socket thread
+Waiting for request processor thread
+Waiting for command engine result
+Returning control to sbt launcher with result Exit(0)
+Closing the 7944@DESKTOP-GVSLK2T logs at Mon Mar 21 20:41:23 EDT 2016, goodbye.

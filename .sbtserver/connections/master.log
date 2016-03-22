@@ -11,3 +11,9 @@ Taking next connection to: 58750
 Checking to see if clients are empty...
 We have 1 non-daemon clients, continuing serving connections.
 Taking next connection to: 58750
+Checking to see if clients are empty...
+No non-daemon clients connected after 3 min. Shutting down.
+Server socket thread exiting.
+0 clients open, will close them...
+All client sockets have been closed.
+Closing the 7944@DESKTOP-GVSLK2T logs at Mon Mar 21 20:41:23 EDT 2016, goodbye.
