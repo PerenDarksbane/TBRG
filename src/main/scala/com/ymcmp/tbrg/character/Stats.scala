@@ -17,39 +17,31 @@ class Stats(r: Race.Value) {
 
   // Ctor logic
   race match {
-    case Race.DWARF => {
+    case Race.DWARF =>
       strength += 2
       constitution += 2
-    }
-    case Race.ELF => {
+    case Race.ELF =>
       dexterity += 2
       intelligence += 1
-    }
-    case Race.DARK_ELF | Race.HALFLING => {
+    case Race.DARK_ELF | Race.HALFLING =>
       dexterity += 2
       charisma += 1
-    }
-    case Race.HUMAN => {
+    case Race.HUMAN =>
       charisma += 1
       wisdom += 1
       constitution += 1
-    }
-    case Race.DRAGONKIN | Race.HALF_ORC => {
+    case Race.DRAGONKIN | Race.HALF_ORC =>
       strength += 2
       constitution += 1
-    }
-    case Race.GNOME => {
+    case Race.GNOME =>
       dexterity += 1
       intelligence += 2
-    }
-    case Race.HALF_ELF => {
+    case Race.HALF_ELF =>
       intelligence += 1
       wisdom += 1
-    }
-    case Race.DEMONKIN => {
+    case Race.DEMONKIN =>
       intelligence += 1
       charisma += 2
-    }
   }
 
   dexterity = convToPts(dexterity)

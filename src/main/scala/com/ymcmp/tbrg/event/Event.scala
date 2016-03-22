@@ -63,7 +63,7 @@ class Event {
         sys.exit()
       }
     }
-    return EndOfConflict.DONE // Just so IntelliJ's IntelliSense can STFU
+    EndOfConflict.DONE // Just so IntelliJ's IntelliSense can STFU
   }
 
   private def enemyTurn(hero: GenericSheet, enemy: GenericSheet): Unit = {

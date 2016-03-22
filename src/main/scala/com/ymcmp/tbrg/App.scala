@@ -11,7 +11,7 @@ object App {
     for (r <- Race.values)
       printf("%d) %s\n", r.id, r)
     println("-1) quit")
-    var res = io.StdIn.readByte().toInt;
+    var res = io.StdIn.readByte().toInt
     if (res == -1)
       sys.exit()
     val urace = if (1 to Race.values.size contains (res + 1)) // `to` contains the numbers
@@ -21,7 +21,7 @@ object App {
     for (r <- Classes.values)
       printf("%d) %s\n", r.id, r)
     println("-1) quit")
-    res = io.StdIn.readByte().toInt;
+    res = io.StdIn.readByte().toInt
     if (res == -1)
       sys.exit()
     val uclass = if (1 to Classes.values.size contains (res + 1))

@@ -41,45 +41,36 @@ abstract class GenericSheet(race: Race.Value, paramAtk: () => Int, paramAc: Int,
 
   final def hasSpells: Boolean = lvlSpells.nonEmpty
 
-  var proficiency = 0
-  var lvl = 0
-
-  updateProficiency
-  updateLvl
+  var lvl = updateLvl()
+  var proficiency = updateProficiency()
 
   final def getExp: Int = exp
 
   final def increaseExp(delta: Int): Int = {
     exp += math.abs(delta)
-    updateLvl
-    updateProficiency
+    lvl = updateLvl()
+    proficiency = updateProficiency()
     exp
   }
 
-  private def updateProficiency: Int = {
-    proficiency = lvl match {
-      case 1 | 2 => 2
-      case 3 | 4 => 3
-      case 5 | 6 => 4
-      case 7 | 8 => 5
-      case _ => 6
-    }
-    proficiency
+  private def updateProficiency(): Int = lvl match {
+    case 1 | 2 => 2
+    case 3 | 4 => 3
+    case 5 | 6 => 4
+    case 7 | 8 => 5
+    case _ => 6
   }
 
-  private def updateLvl: Int = {
-    lvl = exp match {
-      case it if 0 until 900 contains it => 1 // `until` does not contain the higher number
-      case it if 900 until 6500 contains it => 2
-      case it if 6500 until 23000 contains it => 3
-      case it if 23000 until 48000 contains it => 4
-      case it if 48000 until 85000 contains it => 5
-      case it if 85000 until 120000 contains it => 6
-      case it if 120000 until 165000 contains it => 7
-      case it if 165000 until 225000 contains it => 8
-      case _ => 9
-    }
-    lvl
+  private def updateLvl(): Int = exp match {
+    case it if 0 until 900 contains it => 1 // `until` does not contain the higher number
+    case it if 900 until 6500 contains it => 2
+    case it if 6500 until 23000 contains it => 3
+    case it if 23000 until 48000 contains it => 4
+    case it if 48000 until 85000 contains it => 5
+    case it if 85000 until 120000 contains it => 6
+    case it if 120000 until 165000 contains it => 7
+    case it if 165000 until 225000 contains it => 8
+    case _ => 9
   }
 
   final def msgOnHit: String = hitMsg(Dice.d(hitMsg.length) - 1)

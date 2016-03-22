@@ -3,7 +3,7 @@ package com.ymcmp.tbrg.character
 /**
   * Created by Plankp on 2016-03-20.
   */
-final object Dice {
+object Dice {
   def d(x: Int): Int = (math.random * (x - 1) + 1).asInstanceOf[Int]
 
   def d(x: Int, times: Int): Int = {
@@ -11,7 +11,7 @@ final object Dice {
     for (_ <- 0 until times) {
       accum += d(x)
     }
-    return accum
+    accum
   }
 
   def d4: Int = d(4)
