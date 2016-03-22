@@ -8,9 +8,8 @@ object Dice {
 
   def d(x: Int, times: Int): Int = {
     var accum: Int = 0
-    for (_ <- 0 until times) {
+    for (_ <- 0 until times)
       accum += d(x)
-    }
     accum
   }
 

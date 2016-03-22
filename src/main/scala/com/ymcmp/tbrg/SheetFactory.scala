@@ -1,6 +1,7 @@
 package com.ymcmp.tbrg
 
 import com.ymcmp.tbrg.character._
+import com.ymcmp.tbrg.character.enemies.Weakling
 import com.ymcmp.tbrg.character.heros._
 
 /**
@@ -8,7 +9,7 @@ import com.ymcmp.tbrg.character.heros._
   */
 object SheetFactory {
 
-  object Classes extends Enumeration {
+  object HeroTypes extends Enumeration {
     val ELEMENTALIST = Value
     val NECROMANCER = Value
     val PRIEST = Value
@@ -16,13 +17,23 @@ object SheetFactory {
     val PHASE_KNIGHT = Value
   }
 
-  def makeSheet(t: Classes.Value, r: Race.Value): GenericSheet = {
+  def makeHero(t: HeroTypes.Value, r: Race.Value): GenericSheet = {
     t match {
-      case Classes.ELEMENTALIST => new Elementalist(r)
-      case Classes.NECROMANCER => new Necromancer(r)
-      case Classes.PRIEST => new Priest(r)
-      case Classes.WARLOCK => new Warlock(r)
-      case Classes.PHASE_KNIGHT => new PhaseKnight(r)
+      case HeroTypes.ELEMENTALIST => new Elementalist(r)
+      case HeroTypes.NECROMANCER => new Necromancer(r)
+      case HeroTypes.PRIEST => new Priest(r)
+      case HeroTypes.WARLOCK => new Warlock(r)
+      case HeroTypes.PHASE_KNIGHT => new PhaseKnight(r)
+    }
+  }
+
+  object EnemyTypes extends Enumeration {
+    val WEAKLING = Value
+  }
+
+  def makeEnemy(t: EnemyTypes.Value, r: Race.Value): GenericSheet = {
+    t match {
+      case EnemyTypes.WEAKLING => new Weakling(r)
     }
   }
 }

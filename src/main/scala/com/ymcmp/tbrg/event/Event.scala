@@ -1,6 +1,6 @@
 package com.ymcmp.tbrg.event
 
-import com.ymcmp.tbrg.character.GenericSheet
+import com.ymcmp.tbrg.character.{Dice, GenericSheet}
 
 /**
   * Created by Plankp on 2016-03-21.
@@ -36,14 +36,18 @@ class Event {
       }
       state match {
         case ConflictState.RUN =>
-          if (hero.dcDex > enemy.stats.dexterity) return EndOfConflict.DONE else enemyTurn(hero, enemy)
+          if (hero.dcDex > enemy.stats.dexterity)
+            return EndOfConflict.DONE
+          else enemyTurn(hero, enemy)
         case ConflictState.ATTACK =>
           if (hero.dcPro > enemy.ac) {
             println(hero.msgOnHit)
             enemy.hp -= hero.atk()
             if (enemy.hp <= 0) {
               println(hero.msgOnKill)
-              hero.increaseExp(enemy.getExp)
+              val gains: Int = Dice.d(enemy.lvl, 5) * 4
+              println("Gained " + gains + "EXP")
+              hero.increaseExp(gains)
               return EndOfConflict.DONE
             }
           } else println(hero.msgOnMiss)
@@ -75,7 +79,8 @@ class Event {
         hero.hp -= enemy.atk()
         if (hero.hp <= 0) {
           println("ENEMY: " + enemy.msgOnKill)
-          enemy.increaseExp(hero.getExp)
+          val gains: Int = Dice.d(hero.lvl, 5) * 4
+          enemy.increaseExp(gains)
         }
       } else {
         println("ENEMY: " + enemy.msgOnMiss)

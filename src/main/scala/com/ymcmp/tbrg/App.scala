@@ -1,6 +1,6 @@
 package com.ymcmp.tbrg
 
-import com.ymcmp.tbrg.SheetFactory.Classes
+import com.ymcmp.tbrg.SheetFactory.{EnemyTypes, HeroTypes}
 import com.ymcmp.tbrg.character.Race
 import com.ymcmp.tbrg.character.enemies.Weakling
 import com.ymcmp.tbrg.event.Event
@@ -18,19 +18,19 @@ object App {
       Race.values.toList(res)
     else throw new RuntimeException("You entered an illegal number...")
 
-    for (r <- Classes.values)
+    for (r <- HeroTypes.values)
       printf("%d) %s\n", r.id, r)
     println("-1) quit")
     res = io.StdIn.readByte().toInt
     if (res == -1)
       sys.exit()
-    val uclass = if (1 to Classes.values.size contains (res + 1))
-      SheetFactory.makeSheet(Classes.values.toList(res), urace)
+    val uclass = if (1 to HeroTypes.values.size contains (res + 1))
+      SheetFactory.makeHero(HeroTypes.values.toList(res), urace)
     else throw new RuntimeException("You entered an illegal number... ")
 
     println("Your character: " + uclass)
 
     val session = new Event()
-    session.conflict(uclass, new Weakling)
+    session.conflict(uclass, SheetFactory.makeEnemy(EnemyTypes.WEAKLING, Race.HALFLING))
   }
 }
