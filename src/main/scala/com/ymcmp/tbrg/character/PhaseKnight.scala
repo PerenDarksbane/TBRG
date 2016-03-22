@@ -25,7 +25,7 @@ class PhaseKnight(r: Race.Value) extends GenericSheet(r, () => Dice.d12, 0, 0,
     new Spell("MISLEAD", "Make the enemies attack other enemies until your next turn"),
     new Spell("PROJECT COPY", "Enemies who would hit you hit your copy 50% of the time. Copy lasts for 3 of your turns."),
     new Spell("Phase", "If you would be hit by an attack after casting this spell you do not take damage and receive the opportunity to attack the enemy who would have hit you. Lasts for two of your turns")
- )) {
+  )) {
   hp = 10 + stats.constitution + 4 * (lvl - 1)
   ac = 16
 }
