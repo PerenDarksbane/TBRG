@@ -58,28 +58,28 @@ abstract class GenericSheet(race: Race.Value, paramAtk: () => Int, paramAc: Int,
     return lvl
   }
 
-  def msgOnHit(): String = hitMsg(Dice.d(hitMsg.size) - 1)
+  final def msgOnHit: String = hitMsg(Dice.d(hitMsg.size) - 1)
 
-  def msgOnKill: String = killMsg(Dice.d(killMsg.size) - 1)
+  final def msgOnKill: String = killMsg(Dice.d(killMsg.size) - 1)
 
-  def msgOnMiss: String = atkMissMsg(Dice.d(atkMissMsg.size) - 1)
+  final def msgOnMiss: String = atkMissMsg(Dice.d(atkMissMsg.size) - 1)
 
-  def msgPostConflict: String = eocMsg
+  final def msgPostConflict: String = eocMsg
 
   override def toString: String = "[" + stats.race + " " + this.getClass.getSimpleName + " = HP: " + hp +
     " AC: " + ac + "]"
 
-  final def dcPro(): Int = Dice.d20 + proficiency
+  final def dcPro: Int = Dice.d20 + proficiency
 
-  final def dcDex(): Int = Dice.d20 + stats.dexterity
+  final def dcDex: Int = Dice.d20 + stats.dexterity
 
-  final def dcStr(): Int = Dice.d20 + stats.strength
+  final def dcStr: Int = Dice.d20 + stats.strength
 
-  final def dcCon(): Int = Dice.d20 + stats.constitution
+  final def dcCon: Int = Dice.d20 + stats.constitution
 
-  final def dcInt(): Int = Dice.d20 + stats.intelligence
+  final def dcInt: Int = Dice.d20 + stats.intelligence
 
-  final def dcWis(): Int = Dice.d20 + stats.wisdom
+  final def dcWis: Int = Dice.d20 + stats.wisdom
 
-  final def dcCha(): Int = Dice.d20 + stats.charisma
+  final def dcCha: Int = Dice.d20 + stats.charisma
 }

@@ -31,7 +31,5 @@ class Priest(r: Race.Value) extends GenericSheet(r, () => Dice.d4, 0, 0,
     new Spell("REVIVAL", "If you die after using this spell you are brought back to full health. Works once after use")
   )) {
   hp = 8 + stats.constitution + 4 * (lvl - 1)
-  ac = 14 + stats.dexterity
-  if (ac > 16) // Max of 16
-    ac = 16
+  ac = (14 + stats.dexterity) min 16 // ac satisfies .le. 16
 }
