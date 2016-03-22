@@ -2,6 +2,8 @@ package com.ymcmp.tbrg
 
 import com.ymcmp.tbrg.SheetFactory.Classes
 import com.ymcmp.tbrg.character.Race
+import com.ymcmp.tbrg.character.enemies.Weakling
+import com.ymcmp.tbrg.event.Event
 
 object App {
   def main(args: Array[String]) {
@@ -27,5 +29,8 @@ object App {
     else throw new RuntimeException("You entered an illegal number... ")
 
     println("Your character: " + uclass)
+
+    val session = new Event()
+    session.conflict(uclass, new Weakling)
   }
 }

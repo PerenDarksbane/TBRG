@@ -7,19 +7,19 @@ import com.ymcmp.tbrg.character.GenericSheet
   */
 class Event {
 
-  object ConflictState extends Enumeration {
+  private object ConflictState extends Enumeration {
     val RUN = Value
     val ATTACK = Value
     val SPELL = Value
     val SURRENDER = Value
   }
 
-  object EOC extends Enumeration {
+  object EndOfConflict extends Enumeration {
     val DONE = Value
     val SURRENDER = Value
   }
 
-  def conflict(hero: GenericSheet, enemy: GenericSheet): ConflictState.Value = {
+  def conflict(hero: GenericSheet, enemy: GenericSheet): EndOfConflict.Value = {
     while (true) {
       println("You are in combat. Do you want to:")
       for (r <- ConflictState.values)
@@ -38,7 +38,7 @@ class Event {
         case ConflictState.RUN => {
           if (hero.dcDex > enemy.stats.dexterity) {
             println("ENEMY: I'm supposed to be using spells right now... The devs are too lazy...")
-            return ConflictState.RUN
+            return EndOfConflict.DONE
           }
           else enemyTurn(hero, enemy)
         }
@@ -48,6 +48,7 @@ class Event {
             enemy.hp -= hero.atk()
             if (enemy.hp <= 0) {
               println(hero.msgOnKill)
+              return EndOfConflict.DONE
             }
           } else println(hero.msgOnMiss)
 
@@ -63,14 +64,16 @@ class Event {
           enemyTurn(hero, enemy)
         }
         case ConflictState.SURRENDER => {
-          //
+          return EndOfConflict.SURRENDER
         }
       }
+
       if (hero.hp <= 0) {
         println("You ded... GG BOY!!!")
         sys.exit()
       }
     }
+    return EndOfConflict.DONE // Just so IntelliJ's IntelliSense can STFU
   }
 
   private def enemyTurn(hero: GenericSheet, enemy: GenericSheet): Unit = {

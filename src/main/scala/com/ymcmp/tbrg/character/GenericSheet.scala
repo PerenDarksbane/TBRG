@@ -2,18 +2,29 @@ package com.ymcmp.tbrg.character
 
 /**
   * Created by Plankp on 2016-03-21.
+  *
+  * A generic character sheet. Any character (except for NPCs) should extend this class.
+  *
+  * @param race     The race of the character
+  * @param paramAtk An expression evaluated on attack. For example:
+  *                 <code>2d6 + 1 => Dice.d(6, 2) + 1</code>
+  * @param paramAc  Armour class
+  * @param paramHp  Hit points
+  * @param hitMsgs  Possible messages displayed when a successful hit is done
+  * @param killMsgs Possible messages displayed when an opponent is killed
+  * @param eocMsgs  Message displayed after each combat (if the character survives)
+  * @param spells   Spells that can be used by the character
   */
-
 @SerialVersionUID(1425L)
 abstract class GenericSheet(race: Race.Value, paramAtk: () => Int, paramAc: Int, paramHp: Int,
                             hitMsgs: Array[String], killMsgs: Array[String], eocMsgs: String,
-                            spells: Array[Spell]) extends Serializable {
+                            spells: Array[Spell] = Array()) extends Serializable {
   val stats = new Stats(race)
-  var exp = 0
   var atk = paramAtk
   var ac = paramAc
   var hp = paramHp
 
+  private var exp = 0
   private val hitMsg = hitMsgs
   private val killMsg = killMsgs
   private val eocMsg = eocMsgs
@@ -31,6 +42,15 @@ abstract class GenericSheet(race: Race.Value, paramAtk: () => Int, paramAc: Int,
 
   updateProficiency
   updateLvl
+
+  def getExp: Int = exp
+
+  def increaseExp(delta: Int): Int = {
+    exp += math.abs(delta)
+    updateLvl
+    updateProficiency
+    exp
+  }
 
   def updateProficiency: Int = {
     proficiency = lvl match {

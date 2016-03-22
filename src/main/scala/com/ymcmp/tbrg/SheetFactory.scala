@@ -1,6 +1,7 @@
 package com.ymcmp.tbrg
 
 import com.ymcmp.tbrg.character._
+import com.ymcmp.tbrg.character.heros._
 
 /**
   * Created by Plankp on 2016-03-21.
