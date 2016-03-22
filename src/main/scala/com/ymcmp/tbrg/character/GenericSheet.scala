@@ -1,5 +1,7 @@
 package com.ymcmp.tbrg.character
 
+import scala.collection.mutable
+
 /**
   * Created by Plankp on 2016-03-21.
   *
@@ -13,29 +15,31 @@ package com.ymcmp.tbrg.character
   * @param hitMsgs  Possible messages displayed when a successful hit is done
   * @param killMsgs Possible messages displayed when an opponent is killed
   * @param eocMsgs  Message displayed after each combat (if the character survives)
-  * @param spells   Spells that can be used by the character
+  * @param spells   Spells that can be used by the character. <code>Map(level) = Spell</code>
   */
 @SerialVersionUID(1425L)
 abstract class GenericSheet(race: Race.Value, paramAtk: () => Int, paramAc: Int, paramHp: Int,
                             hitMsgs: Array[String], killMsgs: Array[String], eocMsgs: String,
-                            spells: Array[Spell] = Array()) extends Serializable {
+                            spells: mutable.Map[Int, Spell] = mutable.Map()) extends Serializable {
   val stats = new Stats(race)
   var atk = paramAtk
   var ac = paramAc
   var hp = paramHp
 
   private var exp = 0
+  private val lvlSpells = spells
   private val hitMsg = hitMsgs
   private val killMsg = killMsgs
   private val eocMsg = eocMsgs
-  private val lvlSpells = spells
   private val atkMissMsg = Array(
     "Your attack missed.",
     "Your enemy was able to avoid your attack.",
     "Your enemy's armour protected him from your attack."
   )
 
-  def hasSpells(): Boolean = lvlSpells.size > 0
+  final def addSpells(lvl: Int, spell: Spell): Unit = lvlSpells(lvl) = spell
+
+  final def hasSpells: Boolean = lvlSpells.nonEmpty
 
   var proficiency = 0
   var lvl = 0
@@ -43,16 +47,16 @@ abstract class GenericSheet(race: Race.Value, paramAtk: () => Int, paramAc: Int,
   updateProficiency
   updateLvl
 
-  def getExp: Int = exp
+  final def getExp: Int = exp
 
-  def increaseExp(delta: Int): Int = {
+  final def increaseExp(delta: Int): Int = {
     exp += math.abs(delta)
     updateLvl
     updateProficiency
     exp
   }
 
-  def updateProficiency: Int = {
+  private def updateProficiency: Int = {
     proficiency = lvl match {
       case 1 | 2 => 2
       case 3 | 4 => 3
@@ -60,10 +64,10 @@ abstract class GenericSheet(race: Race.Value, paramAtk: () => Int, paramAc: Int,
       case 7 | 8 => 5
       case _ => 6
     }
-    return proficiency
+    proficiency
   }
 
-  def updateLvl: Int = {
+  private def updateLvl: Int = {
     lvl = exp match {
       case it if 0 until 900 contains it => 1 // `until` does not contain the higher number
       case it if 900 until 6500 contains it => 2
@@ -75,14 +79,14 @@ abstract class GenericSheet(race: Race.Value, paramAtk: () => Int, paramAc: Int,
       case it if 165000 until 225000 contains it => 8
       case _ => 9
     }
-    return lvl
+    lvl
   }
 
-  final def msgOnHit: String = hitMsg(Dice.d(hitMsg.size) - 1)
+  final def msgOnHit: String = hitMsg(Dice.d(hitMsg.length) - 1)
 
-  final def msgOnKill: String = killMsg(Dice.d(killMsg.size) - 1)
+  final def msgOnKill: String = killMsg(Dice.d(killMsg.length) - 1)
 
-  final def msgOnMiss: String = atkMissMsg(Dice.d(atkMissMsg.size) - 1)
+  final def msgOnMiss: String = atkMissMsg(Dice.d(atkMissMsg.length) - 1)
 
   final def msgPostConflict: String = eocMsg
 

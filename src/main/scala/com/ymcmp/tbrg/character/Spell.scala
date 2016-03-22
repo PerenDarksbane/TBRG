@@ -5,8 +5,9 @@ package com.ymcmp.tbrg.character
   */
 @SerialVersionUID(1426L)
 class Spell(sname: String, sdesc: String = "<no desc>") extends Serializable {
+
   val name = sname
   val desc = sdesc
 
-  override def toString(): String = "[" + name + ":" + desc + "]"
+  override def toString: String = "[" + name + ":" + desc + "]"
 }
