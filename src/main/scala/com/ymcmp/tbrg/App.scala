@@ -9,7 +9,7 @@ object App {
   def main(args: Array[String]) {
     println("Hello there. What race do you want to be?")
     for (r <- Race.values)
-      printf("%d) %s\n", r.id, r)
+      println(s"${r.id} $r")
     println("-1) quit")
     var res = io.StdIn.readByte().toInt
     if (res == -1)
@@ -19,7 +19,7 @@ object App {
     else throw new RuntimeException("You entered an illegal number...")
 
     for (r <- HeroTypes.values)
-      printf("%d) %s\n", r.id, r)
+      println(s"${r.id} $r")
     println("-1) quit")
     res = io.StdIn.readByte().toInt
     if (res == -1)
@@ -28,7 +28,7 @@ object App {
       SheetFactory.makeHero(HeroTypes.values.toList(res), urace)
     else throw new RuntimeException("You entered an illegal number... ")
 
-    println("Your character: " + uclass)
+    println(s"Your character: $uclass")
 
     val session = new Event()
     session.conflict(uclass, SheetFactory.makeEnemy(EnemyTypes.WEAKLING, Race.HALFLING))

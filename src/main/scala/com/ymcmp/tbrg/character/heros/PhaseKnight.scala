@@ -24,9 +24,9 @@ class PhaseKnight(r: Race.Value) extends GenericSheet(r, () => Dice.d(6, 2) + 1,
   hp = 10 + stats.constitution + 4 * (lvl - 1)
   ac = 16
 
-  addSpells(1, new Spell("SMOKE", "Your enemy cannot hit you until your next turn"))
-  addSpells(3, new Spell("INVISIBILITY", "Enemies cannot hit you until your next turn. If you attack on your next turn it is guaranteed to hit."))
-  addSpells(5, new Spell("MISLEAD", "Make the enemies attack other enemies until your next turn"))
-  addSpells(7, new Spell("PROJECT COPY", "Enemies who would hit you hit your copy 50% of the time. Copy lasts for 3 of your turns."))
-  addSpells(9, new Spell("Phase", "If you would be hit by an attack after casting this spell you do not take damage and receive the opportunity to attack the enemy who would have hit you. Lasts for two of your turns"))
+  addSpells(1, Spell("SMOKE", "Your enemy cannot hit you until your next turn"))
+  addSpells(3, Spell("INVISIBILITY", "Enemies cannot hit you until your next turn. If you attack on your next turn it is guaranteed to hit."))
+  addSpells(5, Spell("MISLEAD", "Make the enemies attack other enemies until your next turn"))
+  addSpells(7, Spell("PROJECT COPY", "Enemies who would hit you hit your copy 50% of the time. Copy lasts for 3 of your turns."))
+  addSpells(9, Spell("Phase", "If you would be hit by an attack after casting this spell you do not take damage and receive the opportunity to attack the enemy who would have hit you. Lasts for two of your turns"))
 }

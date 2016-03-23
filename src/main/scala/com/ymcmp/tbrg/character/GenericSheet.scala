@@ -37,6 +37,15 @@ abstract class GenericSheet(race: Race.Value, paramAtk: () => Int, paramAc: Int,
     "Your enemy's armour protected him from your attack."
   )
 
+  object Spell {
+    def apply(sname: String, sdesc: String = null,
+              act: (GenericSheet, Array[GenericSheet]) => Unit = (a, b) => {}): Spell =
+      new Spell(GenericSheet.this, sname, sdesc match {
+        case null => None
+        case _ => Some(sdesc)
+      }, act)
+  }
+
   final def addSpells(lvl: Int, spell: Spell): Unit = lvlSpells(lvl) = spell
 
   final def hasSpells: Boolean = lvlSpells.nonEmpty
@@ -52,6 +61,8 @@ abstract class GenericSheet(race: Race.Value, paramAtk: () => Int, paramAc: Int,
     proficiency = updateProficiency()
     exp
   }
+
+  final def getUsableSpells: Array[Spell] = lvlSpells.filterKeys(_ <= lvl).toArray.map(_._2)
 
   private def updateProficiency(): Int = lvl match {
     case 1 | 2 => 2

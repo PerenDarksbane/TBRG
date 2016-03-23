@@ -26,13 +26,22 @@ class Elementalist(r: Race.Value) extends GenericSheet(r, () => Dice.d6, 0, 0,
   hp = 6 + stats.constitution + 3 * (lvl - 1)
   ac = 13 + stats.dexterity
 
-  addSpells(1, new Spell("THUNDERWAVE", "Create a large thunder sound causing enemies to miss their next turn"))
-  addSpells(2, new Spell("MISTY STEP", "If you run next turn you are guaranteed to succeed"))
-  addSpells(3, new Spell("COUNTERSPELL", "Prevents spells from affecting you until your next turn"))
-  addSpells(4, new Spell("STONESKIN", "Damage taken is halved for the rest of the round (Does not attack)"))
-  addSpells(5, new Spell("CLOUDKILL", "Half your health to instantly defeat a random enemy (Use lightning ON KILL)"))
-  addSpells(6, new Spell("CHAIN LIGHTNING", "Attack as normal except on hit do damage to all enemies(Use lightning ON HIT)"))
-  addSpells(7, new Spell("FIRESTORM", "Damage an enemy like an attack and prevent all enemies from doing anything on their next turn"))
-  addSpells(8, new Spell("EARTHQUAKE", "Traps enemies in the earth, allowing your next attack to hit no matter what"))
-  addSpells(9, new Spell("METEORSWARM", "Do a double damage attack to all enemies and prevent them from using their next turn"))
+  addSpells(1, Spell("THUNDERWAVE", "Create a large thunder sound causing enemies to miss their next turn",
+    (hero, enemies) => {
+      println("Tell the devs to get to work...")
+    }))
+  addSpells(2, Spell("MISTY STEP", "If you run next turn you are guaranteed to succeed",
+    (hero, enemies) => {
+      //
+    }))
+  addSpells(3, Spell("COUNTERSPELL", "Prevents spells from affecting you until your next turn",
+    (hero, enemies) => {
+      //
+    }))
+  addSpells(4, Spell("STONESKIN", "Damage taken is halved for the rest of the round (Does not attack)"))
+  addSpells(5, Spell("CLOUDKILL", "Half your health to instantly defeat a random enemy (Use lightning ON KILL)"))
+  addSpells(6, Spell("CHAIN LIGHTNING", "Attack as normal except on hit do damage to all enemies(Use lightning ON HIT)"))
+  addSpells(7, Spell("FIRESTORM", "Damage an enemy like an attack and prevent all enemies from doing anything on their next turn"))
+  addSpells(8, Spell("EARTHQUAKE", "Traps enemies in the earth, allowing your next attack to hit no matter what"))
+  addSpells(9, Spell("METEORSWARM", "Do a double damage attack to all enemies and prevent them from using their next turn"))
 }
