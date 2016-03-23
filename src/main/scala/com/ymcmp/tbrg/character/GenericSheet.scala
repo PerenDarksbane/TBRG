@@ -5,7 +5,7 @@ import scala.collection.mutable
 /**
   * Created by Plankp on 2016-03-21.
   *
-  * A generic character sheet. Any character (except for NPCs) should extend this class.
+  * A generic character sheet. Any character (including NPCs) should extend this class.
   *
   * @param race     The race of the character
   * @param paramAtk An expression evaluated on attack. For example:
@@ -26,6 +26,7 @@ abstract class GenericSheet(race: Race.Value, paramAtk: () => Int, paramAc: Int,
   var ac = paramAc
   var hp = paramHp
 
+  private var hasUsedSpells = false
   private var exp = 0
   private val lvlSpells = spells
   private val hitMsg = hitMsgs
@@ -39,7 +40,7 @@ abstract class GenericSheet(race: Race.Value, paramAtk: () => Int, paramAc: Int,
 
   object Spell {
     def apply(sname: String, sdesc: String = null,
-              act: (GenericSheet, Array[GenericSheet]) => Unit = (a, b) => {}): Spell =
+              act: (GenericSheet, Array[GenericSheet]) => Unit = ???): Spell =
       new Spell(GenericSheet.this, sname, sdesc match {
         case null => None
         case _ => Some(sdesc)
@@ -62,7 +63,16 @@ abstract class GenericSheet(race: Race.Value, paramAtk: () => Int, paramAc: Int,
     exp
   }
 
-  final def getUsableSpells: Array[Spell] = lvlSpells.filterKeys(_ <= lvl).toArray.map(_._2)
+  final def restoreSpells(): Unit = hasUsedSpells = false
+
+  final def getUsableSpells: Array[Spell] =
+    if (hasUsedSpells) {
+      println("You are only allowed one spell per combat")
+      Array()
+    } else {
+      hasUsedSpells = true
+      lvlSpells.filterKeys(_ <= lvl).toArray.map(_._2)
+    }
 
   private def updateProficiency(): Int = lvl match {
     case 1 | 2 => 2
