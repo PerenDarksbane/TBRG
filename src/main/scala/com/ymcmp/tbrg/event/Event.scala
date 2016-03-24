@@ -49,6 +49,7 @@ class Event {
         println("You ded... GG BOY!!!")
         sys.exit()
       }
+      println(s"End of turn report: $hero")
       println("You are still in combat. Do you want to:")
     }
     EndOfConflict.DONE // Just so IntelliJ's IntelliSense can STFU
@@ -93,8 +94,8 @@ class Event {
   private def enemyTurn(hero: GenericSheet, enemy: GenericSheet): Unit = {
     if (enemy.canUseSpells && Dice.d8 > 5) {
       val spells = enemy.getUsableSpells
-      println("ENEMY: ")
-      spells(Dice.d(spells.size) - 1)(hero)
+      print("ENEMY: ")
+      spells(Dice.d(spells.length) - 1)(hero)
     } else {
       if (enemy.dcPro > hero.ac) {
         println(s"ENEMY: ${enemy.msgOnHit}")
