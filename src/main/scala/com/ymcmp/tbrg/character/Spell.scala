@@ -9,7 +9,10 @@ class Spell(charac: GenericSheet, sname: String, sdesc: Option[String] = None,
   val name = sname
   val desc = sdesc
 
-  final def action(enemies: GenericSheet*): Unit = act(charac, enemies.toArray)
+  final def apply(enemies: GenericSheet*): Unit = {
+    println(s"used spell $this")
+    act(charac, enemies.toArray)
+  }
 
   override def toString: String = desc match {
     case Some(s) => s"[$name:$s]"

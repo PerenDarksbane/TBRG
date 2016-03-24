@@ -2,8 +2,6 @@ package com.ymcmp.tbrg.character.heros
 
 import com.ymcmp.tbrg.character._
 
-import scala.collection.mutable
-
 /**
   * Created by Plankp on 2016-03-21.
   */

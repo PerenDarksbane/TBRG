@@ -2,7 +2,6 @@ package com.ymcmp.tbrg
 
 import com.ymcmp.tbrg.SheetFactory.{EnemyTypes, HeroTypes}
 import com.ymcmp.tbrg.character.Race
-import com.ymcmp.tbrg.character.enemies.Weakling
 import com.ymcmp.tbrg.event.Event
 
 object App {

@@ -39,17 +39,16 @@ abstract class GenericSheet(race: Race.Value, paramAtk: () => Int, paramAc: Int,
   )
 
   object Spell {
-    def apply(sname: String, sdesc: String = null,
-              act: (GenericSheet, Array[GenericSheet]) => Unit = ???): Spell =
-      new Spell(GenericSheet.this, sname, sdesc match {
-        case null => None
-        case _ => Some(sdesc)
-      }, act)
+    def apply(name: String, desc: String = null,
+              act: (GenericSheet, Array[GenericSheet]) => Unit = (_, _) => ???): Spell =
+      new Spell(GenericSheet.this, name, if (desc == null || desc.trim.length == 0) None else Some(desc), act)
   }
 
   final def addSpells(lvl: Int, spell: Spell): Unit = lvlSpells(lvl) = spell
 
   final def hasSpells: Boolean = lvlSpells.nonEmpty
+
+  final def canUseSpells: Boolean = if (!hasUsedSpells) hasSpells else !hasUsedSpells
 
   var lvl = updateLvl()
   var proficiency = updateProficiency()
