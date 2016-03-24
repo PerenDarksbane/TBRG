@@ -1,7 +1,7 @@
 package com.ymcmp.tbrg
 
 import com.ymcmp.tbrg.character._
-import com.ymcmp.tbrg.character.enemies.Weakling
+import com.ymcmp.tbrg.character.enemies.Scout
 import com.ymcmp.tbrg.character.heros._
 
 /**
@@ -15,7 +15,7 @@ object SheetFactory {
     val PRIEST = Value
     val WARLOCK = Value
     val PHASE_KNIGHT = Value
-    val WEAKLING = Value
+    val SCOUT = Value
   }
 
   def apply(t: CharacterTypes.Value, r: Race.Value): GenericSheet = {
@@ -25,7 +25,7 @@ object SheetFactory {
       case CharacterTypes.PRIEST => new Priest(r)
       case CharacterTypes.WARLOCK => new Warlock(r)
       case CharacterTypes.PHASE_KNIGHT => new PhaseKnight(r)
-      case CharacterTypes.WEAKLING => new Weakling(r)
+      case CharacterTypes.SCOUT => new Scout(r)
     }
   }
 }
