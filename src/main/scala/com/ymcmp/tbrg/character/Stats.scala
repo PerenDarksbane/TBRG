@@ -51,6 +51,6 @@ class Stats(r: Race.Value) {
   charisma = convToPts(charisma)
   wisdom = convToPts(wisdom)
 
-  def map(act: (Int) => Int) =
-    Array(dexterity, strength, constitution, intelligence, charisma, wisdom).map(act)
+  def map(act: (Int) => Int): Unit =
+    Array(dexterity, strength, constitution, intelligence, charisma, wisdom) map act
 }

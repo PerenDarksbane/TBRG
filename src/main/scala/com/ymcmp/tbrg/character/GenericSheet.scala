@@ -56,7 +56,7 @@ abstract class GenericSheet(race: Race.Value, paramAtk: () => Int, paramAc: Int,
   final def getExp: Int = exp
 
   final def increaseExp(delta: Int): Int = {
-    exp += math.abs(delta)
+    exp += math abs delta
     lvl = updateLvl()
     proficiency = updateProficiency()
     exp
@@ -70,7 +70,7 @@ abstract class GenericSheet(race: Race.Value, paramAtk: () => Int, paramAc: Int,
       Array()
     } else {
       hasUsedSpells = true
-      lvlSpells.filterKeys(_ <= lvl).toArray.map(_._2)
+      (lvlSpells filterKeys (_ <= lvl)).toArray map (_._2)
     }
 
   private def updateProficiency(): Int = lvl match {
@@ -93,11 +93,11 @@ abstract class GenericSheet(race: Race.Value, paramAtk: () => Int, paramAc: Int,
     case _ => 9
   }
 
-  final def msgOnHit: String = hitMsg(Dice.d(hitMsg.length) - 1)
+  final def msgOnHit: String = hitMsg((Dice d hitMsg.length) - 1)
 
-  final def msgOnKill: String = killMsg(Dice.d(killMsg.length) - 1)
+  final def msgOnKill: String = killMsg((Dice d killMsg.length) - 1)
 
-  final def msgOnMiss: String = atkMissMsg(Dice.d(atkMissMsg.length) - 1)
+  final def msgOnMiss: String = atkMissMsg((Dice d atkMissMsg.length) - 1)
 
   final def msgPostConflict: String = eocMsg
 

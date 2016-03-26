@@ -19,16 +19,14 @@ object SheetFactory {
     val TEMPLAR = Value
   }
 
-  def apply(t: CharacterTypes.Value, r: Race.Value): GenericSheet = {
-    t match {
-      case CharacterTypes.ELEMENTALIST => new Elementalist(r)
-      case CharacterTypes.NECROMANCER => new Necromancer(r)
-      case CharacterTypes.PRIEST => new Priest(r)
-      case CharacterTypes.WARLOCK => new Warlock(r)
-      case CharacterTypes.PHASE_KNIGHT => new PhaseKnight(r)
-      case CharacterTypes.SCOUT => new Scout(r)
-      case CharacterTypes.BATTLEMAGE => new Battlemage(r)
-      case CharacterTypes.TEMPLAR => new Templar(r)
-    }
+  def apply(t: CharacterTypes.Value, r: Race.Value): GenericSheet = t match {
+    case CharacterTypes.ELEMENTALIST => new Elementalist(r)
+    case CharacterTypes.NECROMANCER => new Necromancer(r)
+    case CharacterTypes.PRIEST => new Priest(r)
+    case CharacterTypes.WARLOCK => new Warlock(r)
+    case CharacterTypes.PHASE_KNIGHT => new PhaseKnight(r)
+    case CharacterTypes.SCOUT => new Scout(r)
+    case CharacterTypes.BATTLEMAGE => new Battlemage(r)
+    case CharacterTypes.TEMPLAR => new Templar(r)
   }
 }
