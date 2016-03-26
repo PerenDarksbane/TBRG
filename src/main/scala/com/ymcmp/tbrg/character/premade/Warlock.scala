@@ -1,4 +1,4 @@
-package com.ymcmp.tbrg.character.heros
+package com.ymcmp.tbrg.character.premade
 
 import com.ymcmp.tbrg.character._
 

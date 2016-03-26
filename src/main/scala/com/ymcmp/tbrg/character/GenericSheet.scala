@@ -101,8 +101,7 @@ abstract class GenericSheet(race: Race.Value, paramAtk: () => Int, paramAc: Int,
 
   final def msgPostConflict: String = eocMsg
 
-  override def toString: String = "[" + stats.race + " " + this.getClass.getSimpleName + " = HP: " + hp +
-    " AC: " + ac + "]"
+  override def toString: String = s"[${stats.race} ${this.getClass.getSimpleName} = HP: $hp AC: $ac]"
 
   final def dcPro: Int = Dice.d20 + proficiency
 

@@ -22,7 +22,6 @@ class Event {
     val CONTINUE = Value
   }
 
-
   def conflict(hero: GenericSheet, enemy: GenericSheet): EndOfConflict.Value = {
     var t = EndOfConflict.CONTINUE
     println("You are in combat. Do you want to:")
@@ -111,4 +110,3 @@ class Event {
     }
   }
 }
-

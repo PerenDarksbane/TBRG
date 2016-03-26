@@ -1,8 +1,7 @@
 package com.ymcmp.tbrg
 
 import com.ymcmp.tbrg.character._
-import com.ymcmp.tbrg.character.enemies.Scout
-import com.ymcmp.tbrg.character.heros._
+import com.ymcmp.tbrg.character.premade._
 
 /**
   * Created by Plankp on 2016-03-21.
@@ -16,6 +15,8 @@ object SheetFactory {
     val WARLOCK = Value
     val PHASE_KNIGHT = Value
     val SCOUT = Value
+    val BATTLEMAGE = Value
+    val TEMPLAR = Value
   }
 
   def apply(t: CharacterTypes.Value, r: Race.Value): GenericSheet = {
@@ -26,6 +27,8 @@ object SheetFactory {
       case CharacterTypes.WARLOCK => new Warlock(r)
       case CharacterTypes.PHASE_KNIGHT => new PhaseKnight(r)
       case CharacterTypes.SCOUT => new Scout(r)
+      case CharacterTypes.BATTLEMAGE => new Battlemage(r)
+      case CharacterTypes.TEMPLAR => new Templar(r)
     }
   }
 }

@@ -1,7 +1,7 @@
 package com.ymcmp.tbrg
 
 import com.ymcmp.tbrg.SheetFactory.CharacterTypes
-import com.ymcmp.tbrg.character.Race
+import com.ymcmp.tbrg.character.{Dice, Race}
 import com.ymcmp.tbrg.event.Event
 
 object App {
@@ -30,6 +30,9 @@ object App {
     println(s"Your character: $uclass")
 
     val session = new Event()
-    session.conflict(uclass, SheetFactory(CharacterTypes.WEAKLING, Race.HALFLING))
+    1 to Dice.d8 foreach (_ =>
+      session.conflict(uclass,
+        SheetFactory(CharacterTypes.values.toList(Dice.d(CharacterTypes.values.size) - 1),
+          Race.values.toList(Dice.d(Race.values.size) - 1))))
   }
 }
