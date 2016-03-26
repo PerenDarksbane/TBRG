@@ -7,7 +7,9 @@ import scala.collection.mutable
   *
   * A generic character sheet. Any character (including NPCs) should extend this class.
   *
-  * @param race     The race of the character
+  * @param pname    The name of the character
+  * @param pgender  The gender of the character
+  * @param pstats   The stats of the character
   * @param paramAtk An expression evaluated on attack. For example:
   *                 <code>2d6 + 1 => Dice.d(6, 2) + 1</code>
   * @param paramAc  Armour class
@@ -18,10 +20,13 @@ import scala.collection.mutable
   * @param spells   Spells that can be used by the character. <code>Map(level) = Spell</code>
   */
 @SerialVersionUID(1425L)
-abstract class GenericSheet(race: Race.Value, paramAtk: () => Int, paramAc: Int, paramHp: Int,
+abstract class GenericSheet(pname: String, pgender: Gender.Value,
+                            pstats: Stats, paramAtk: () => Int, paramAc: Int, paramHp: Int,
                             hitMsgs: Array[String], killMsgs: Array[String], eocMsgs: String,
                             spells: mutable.Map[Int, Spell] = mutable.Map()) extends Serializable {
-  val stats = new Stats(race)
+  val name = pname
+  val gender = pgender
+  val stats = pstats
   var atk = paramAtk
   var ac = paramAc
   var hp = paramHp
@@ -101,7 +106,9 @@ abstract class GenericSheet(race: Race.Value, paramAtk: () => Int, paramAc: Int,
 
   final def msgPostConflict: String = eocMsg
 
-  override def toString: String = s"[${stats.race} ${this.getClass.getSimpleName} = HP: $hp AC: $ac]"
+  // For example:
+  // [Plankp: A MALE HUMAN Programmer with HP: 10 AC: 0]
+  override def toString: String = s"[$name: A $gender ${stats.race} ${this.getClass.getSimpleName} with HP: $hp AC: $ac]"
 
   final def dcPro: Int = Dice.d20 + proficiency
 

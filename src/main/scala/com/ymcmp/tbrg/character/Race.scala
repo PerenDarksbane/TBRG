@@ -15,3 +15,9 @@ object Race extends Enumeration {
   val HALF_ELF = Value
   val DEMONKIN = Value
 }
+
+object Gender extends Enumeration {
+  val FEMALE = Value
+  val MALE = Value
+  // val UNSPECIFIED = Value
+}

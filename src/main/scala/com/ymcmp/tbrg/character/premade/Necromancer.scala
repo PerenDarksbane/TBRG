@@ -5,7 +5,8 @@ import com.ymcmp.tbrg.character._
 /**
   * Created by Plankp on 2016-03-21.
   */
-class Necromancer(r: Race.Value) extends GenericSheet(r, () => Dice.d4, 0, 0,
+class Necromancer(name: String, gender: Gender.Value, stats: Stats) extends GenericSheet(name, gender,
+  stats, () => Dice.d4, 0, 0,
   Array(
     "You blast your enemy with a bolt of darkness.",
     "Using your sacrificial dagger, you carve a deep wound into your enemy's side.",

@@ -5,7 +5,8 @@ import com.ymcmp.tbrg.character._
 /**
   * Created by Plankp on 2016-03-21.
   */
-class Warlock(r: Race.Value) extends GenericSheet(r, () => Dice.d6, 0, 0,
+class Warlocke(name: String, gender: Gender.Value, stats: Stats) extends GenericSheet(name, gender,
+  stats, () => Dice.d6, 0, 0,
   Array(
     "Demonic flames coat your enemy.",
     "Your dark curved blade cuts cleanly through your enemy's flesh.",

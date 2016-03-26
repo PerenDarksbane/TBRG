@@ -1,11 +1,12 @@
 package com.ymcmp.tbrg.character.premade
 
-import com.ymcmp.tbrg.character.{Dice, GenericSheet, Race}
+import com.ymcmp.tbrg.character._
 
 /**
   * Created by Plankp on 2016-03-26.
   */
-class Battlemage(r: Race.Value) extends GenericSheet(r, () => Dice.d(10), 15, 0,
+class Battlemage(name: String, gender: Gender.Value, stats: Stats) extends GenericSheet(name, gender,
+  stats, () => Dice.d(10), 15, 0,
   Array(
     "Your mace causes your enemy;s armour to crumble",
     "You spray your enemy with poison",

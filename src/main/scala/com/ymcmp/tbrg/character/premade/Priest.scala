@@ -5,7 +5,8 @@ import com.ymcmp.tbrg.character._
 /**
   * Created by Plankp on 2016-03-21.
   */
-class Priest(r: Race.Value) extends GenericSheet(r, () => Dice.d4, 0, 0,
+class Priest(name: String, gender: Gender.Value, stats: Stats) extends GenericSheet(name, gender,
+  stats, () => Dice.d4, 0, 0,
   Array(
     "You stab your enemy with your wooden stake.",
     "You blast your enemy with the power of the sun.",

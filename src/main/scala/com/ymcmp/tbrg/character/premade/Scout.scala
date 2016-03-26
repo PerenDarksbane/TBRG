@@ -9,7 +9,8 @@ object Scout {
   def originalAtk = () => Dice.d(2)
 }
 
-class Scout(r: Race.Value) extends GenericSheet(r, Scout.originalAtk, 4, 10,
+class Scout(name: String, gender: Gender.Value, stats: Stats) extends GenericSheet(name, gender,
+  stats, Scout.originalAtk, 4, 10,
   Array("Man, you got hit by a Scout? You suck!"),
   Array("Man, you got killed by a Scout? You suck even more!"),
   "I spy with my little eye, you being ded") {

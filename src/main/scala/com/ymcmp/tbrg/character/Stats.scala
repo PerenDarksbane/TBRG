@@ -51,6 +51,9 @@ class Stats(r: Race.Value) {
   charisma = convToPts(charisma)
   wisdom = convToPts(wisdom)
 
+  override def toString: String =
+    s"dex: $dexterity str: $strength con: $constitution int: $intelligence cha: $charisma wis: $wisdom"
+
   def map(act: (Int) => Int): Unit =
     Array(dexterity, strength, constitution, intelligence, charisma, wisdom) map act
 }

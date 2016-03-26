@@ -1,11 +1,12 @@
 package com.ymcmp.tbrg.character.premade
 
-import com.ymcmp.tbrg.character.{Dice, GenericSheet, Race}
+import com.ymcmp.tbrg.character._
 
 /**
   * Created by Plankp on 2016-03-26.
   */
-class Templar(r: Race.Value) extends GenericSheet(r, () => Dice.d8 + 4, 18, 0,
+class Templar(name: String, gender: Gender.Value, stats: Stats) extends GenericSheet(name, gender,
+  stats, () => Dice.d8 + 4, 18, 0,
   Array(
     "You smash your enemy's face with your shield",
     "Your longsword cuts deep",

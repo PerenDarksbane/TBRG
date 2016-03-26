@@ -5,7 +5,8 @@ import com.ymcmp.tbrg.character._
 /**
   * Created by Plankp on 2016-03-21.
   */
-class Elementalist(r: Race.Value) extends GenericSheet(r, () => Dice.d6, 0, 0,
+class Elementalist(name: String, gender: Gender.Value, stats: Stats) extends GenericSheet(name, gender,
+  stats, () => Dice.d6, 0, 0,
   Array(
     "You use your staff and thrust the end into the enemy's stomach.",
     "You form a bubble of acid which you hurl at the enemy, covering him in bubbling, burning, green slime.",

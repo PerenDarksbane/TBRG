@@ -5,7 +5,8 @@ import com.ymcmp.tbrg.character._
 /**
   * Created by Plankp on 2016-03-21.
   */
-class PhaseKnight(r: Race.Value) extends GenericSheet(r, () => Dice.d(6, 2) + 1, 0, 0,
+class PhaseKnight(name: String, gender: Gender.Value, stats: Stats) extends GenericSheet(name, gender,
+  stats, () => Dice.d(6, 2) + 1, 0, 0,
   Array(
     "Your blades tear through the enemy's armour.",
     "You smash the enemy's head with the handle of your swords.",
