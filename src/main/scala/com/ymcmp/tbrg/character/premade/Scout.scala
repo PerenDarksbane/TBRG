@@ -18,8 +18,8 @@ class Scout(name: String, gender: Gender.Value, stats: Stats) extends GenericShe
     "Your enemy's body slides off your blade onto the floor",
     "You shatter your enemy's skull with your elbow",
     "You snap your enemy's neck",
-    "Your blade impales your opponent",
-    "You throw your opponent over your shoulder breaking his nck on the floor"
+    "Your blade impales your opponent, killing him",
+    "You throw your opponent over your shoulder breaking his neck on the floor"
   ),
   "You finish off your last enemy then fade into the shadows") {
 
