@@ -17,11 +17,10 @@ object AppGui {
   def enterGui(): Unit = {
     try {
       try {
-        // Set System L&F
         UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName)
-        //println("Using System L&F")
+        // Using System L&F
       } catch {
-        case _: Exception => println("Using METAL L&F")
+        case _: Exception => {} // Using METAL L&F
       }
       new AppGui() // Default mode is enter GUI mode
     } catch {
@@ -33,7 +32,9 @@ object AppGui {
 class AppGui extends JFrame("Text based RPG") {
 
   val txtBody = new StreamTextArea()
-  add(new JScrollPane(txtBody))
+  add(txtBody)
+
+  txtBody.cbAutoCmpPat = "[A-Z_]{2,}".r
 
   System.setOut(txtBody.outStream)
   System.setIn(txtBody.inStream)
