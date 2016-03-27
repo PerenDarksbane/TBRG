@@ -5,7 +5,13 @@ import com.ymcmp.tbrg.character.{Dice, GenericSheet}
 /**
   * Created by Plankp on 2016-03-21.
   */
-class Event {
+class Event(hero: GenericSheet) {
+
+  def play: Unit = {
+    println("You wake up in dirty clothing in a damp cell underground. You look around and see you are in a small cell in a large room with no windows. You have no idea how you got here. The last thing you remeber was going to sleep in your cottage. There are other CELLS as well as other PEOPLE in your cell. The GUARDS stand outside your cell.")
+    print("action >>")
+    io.StdIn.readLine()
+  }
 
   private object ConflictState extends Enumeration {
     val RUN = Value

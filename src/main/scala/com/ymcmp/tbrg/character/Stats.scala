@@ -3,6 +3,13 @@ package com.ymcmp.tbrg.character
 /**
   * Created by Plankp on 2016-03-20.
   */
+object Stats {
+
+  def convToPts(x: Int): Int = (x - 10) / 2
+}
+
+import Stats._
+
 class Stats(r: Race.Value) {
   // Pre-initialize
   val race = r
@@ -13,7 +20,12 @@ class Stats(r: Race.Value) {
   var charisma: Int = Dice.d(6, 3)
   var wisdom: Int = Dice.d(6, 3)
 
-  def convToPts(x: Int): Int = (x - 10) / 2
+  dexterity = convToPts(dexterity)
+  strength = convToPts(strength)
+  constitution = convToPts(constitution)
+  intelligence = convToPts(intelligence)
+  charisma = convToPts(charisma)
+  wisdom = convToPts(wisdom)
 
   // Ctor logic
   race match {
@@ -43,13 +55,6 @@ class Stats(r: Race.Value) {
       intelligence += 1
       charisma += 2
   }
-
-  dexterity = convToPts(dexterity)
-  strength = convToPts(strength)
-  constitution = convToPts(constitution)
-  intelligence = convToPts(intelligence)
-  charisma = convToPts(charisma)
-  wisdom = convToPts(wisdom)
 
   override def toString: String =
     s"dex: $dexterity str: $strength con: $constitution int: $intelligence cha: $charisma wis: $wisdom"
