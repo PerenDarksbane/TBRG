@@ -1,6 +1,6 @@
 package com.ymcmp.tbrg
 
-import com.ymcmp.tbrg.character.{GenericSheet, _}
+import com.ymcmp.tbrg.character._
 import com.ymcmp.tbrg.character.premade._
 
 /**
@@ -48,6 +48,7 @@ object SheetFactory {
     case CharacterTypes.SCOUT => new Scout(name, gender, stats)
     case CharacterTypes.BATTLEMAGE => new Battlemage(name, gender, stats)
     case CharacterTypes.TEMPLAR => new Templar(name, gender, stats)
+    case CharacterTypes.ARCANE_ARCHER => new ArcaneArcher(name, gender, stats)
     case _ => ???
   }
 }

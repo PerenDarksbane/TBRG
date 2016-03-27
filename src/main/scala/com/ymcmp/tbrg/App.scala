@@ -1,9 +1,7 @@
 package com.ymcmp.tbrg
 
-import javax.swing.UIManager
-
 import com.ymcmp.tbrg.SheetFactory.{BasicData, CharacterTypes}
-import com.ymcmp.tbrg.character.{Dice, Gender, Race, Stats}
+import com.ymcmp.tbrg.character.{Gender, Race, Stats}
 import com.ymcmp.tbrg.event.Event
 
 object App {
