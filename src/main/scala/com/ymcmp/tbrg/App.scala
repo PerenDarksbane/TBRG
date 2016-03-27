@@ -6,7 +6,7 @@ import com.ymcmp.tbrg.event.Event
 
 object App {
   def main(args: Array[String]) {
-    new Event(SheetFactory(characterSetup)) play
+    new Event(SheetFactory(characterSetup)) play()
   }
 
   def characterSetup: BasicData = {

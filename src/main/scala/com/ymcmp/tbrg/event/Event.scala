@@ -5,13 +5,19 @@ import com.ymcmp.tbrg.character.{Dice, GenericSheet}
 /**
   * Created by Plankp on 2016-03-21.
   */
-class Event(hero: GenericSheet) {
+object Event {
+  // The conflicts will be re-written here
+  // Multi-turn conflict use Dex DC as initiative
+  // which determines when the player goes.
+}
 
-  def play: Unit = {
-    println("You wake up in dirty clothing in a damp cell underground. You look around and see you are in a small cell in a large room with no windows. You have no idea how you got here. The last thing you remeber was going to sleep in your cottage. There are other CELLS as well as other PEOPLE in your cell. The GUARDS stand outside your cell.")
-    print("action >>")
-    io.StdIn.readLine()
-  }
+import Event._
+
+class Event(phero: GenericSheet) {
+
+  var hero = phero
+
+  def play(): Unit = MainStoryBoard(this)
 
   private object ConflictState extends Enumeration {
     val RUN = Value
@@ -22,11 +28,12 @@ class Event(hero: GenericSheet) {
 
   object EndOfConflict extends Enumeration {
     val DONE = Value
+    val RUN = Value
     val SURRENDER = Value
     val CONTINUE = Value
   }
 
-  def conflict(hero: GenericSheet, enemy: GenericSheet): EndOfConflict.Value = {
+  def conflict(enemy: GenericSheet): EndOfConflict.Value = {
     var t = EndOfConflict.CONTINUE
     println("You are in combat. Do you want to:")
     while (true) {
@@ -62,7 +69,7 @@ class Event(hero: GenericSheet) {
                       (userChoice: ConflictState.Value): EndOfConflict.Value = {
     userChoice match {
       case ConflictState.RUN =>
-        if (hero.dcDex > enemy.stats.dexterity) return EndOfConflict.DONE
+        if (hero.dcDex > enemy.stats.dexterity) return EndOfConflict.RUN
       case ConflictState.ATTACK =>
         if (hero.dcPro > enemy.ac) {
           println(hero.msgOnHit)
