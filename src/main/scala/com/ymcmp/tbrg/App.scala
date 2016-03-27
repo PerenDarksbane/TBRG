@@ -1,12 +1,34 @@
 package com.ymcmp.tbrg
 
+import javax.swing.UIManager
+
 import com.ymcmp.tbrg.SheetFactory.{BasicData, CharacterTypes}
 import com.ymcmp.tbrg.character.{Dice, Gender, Race, Stats}
 import com.ymcmp.tbrg.event.Event
 
 object App {
   def main(args: Array[String]) {
+    if (args.length == 1) {
+      args(0) match {
+        case "-c" | "--console" => {} // Empty block
+        case "-g" | "--gui" => AppGui.enterGui()
+        case "-h" | "--help" => printHelp()
+        case _ => {
+          println(s"Argument not recognized! ${args(0)}")
+          printHelp()
+        }
+      }
+    } else AppGui.enterGui()
     new Event(SheetFactory(characterSetup)) play()
+  }
+
+  def printHelp(): Unit = {
+    println("TBRG [OPTIONS]")
+    println("[OPTIONS]:")
+    println("    -c, --console  Launches game in console (fallback) mode")
+    println("    -g, --gui      Launches game in gui (default) mode")
+    println("    -h, --help     Prints this message")
+    sys.exit()
   }
 
   def characterSetup: BasicData = {
