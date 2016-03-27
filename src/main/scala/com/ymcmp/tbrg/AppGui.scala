@@ -1,7 +1,8 @@
 package com.ymcmp.tbrg
 
+import java.awt.event.{ActionEvent, ActionListener}
 import java.io.PrintStream
-import javax.swing.{JFrame, JScrollPane, JTextArea, UIManager}
+import javax.swing._
 
 import com.ymcmp.tbrg.guicmp.StreamTextArea
 
@@ -31,16 +32,38 @@ object AppGui {
 
 class AppGui extends JFrame("Text based RPG") {
 
-  val txtBody = new StreamTextArea()
-  add(txtBody)
+  val topMenuBar = new JMenuBar
+  this setJMenuBar topMenuBar
+
+  val menuHelp = new JMenu("Help")
+  topMenuBar add menuHelp
+
+  val menuItemHelp = new JMenuItem("Help")
+  menuHelp add menuItemHelp
+
+  menuItemHelp.addActionListener(new ActionListener() {
+    def actionPerformed(e: ActionEvent): Unit =
+      JOptionPane.showMessageDialog(null, "Type in the response based on the prompts. If you do not know \nwhat to enter, click on the drop down arrow on the combo box \nand it might have the valid answers presented")
+  })
+
+  val menuItemAbout = new JMenuItem("About")
+  menuHelp add menuItemAbout
+
+  menuItemAbout.addActionListener(new ActionListener() {
+    def actionPerformed(e: ActionEvent): Unit =
+      JOptionPane.showMessageDialog(null, "Made with love by Prototype Games\nTo find out more, go to http://prototype-games.github.io")
+  })
+
+  val txtBody = new StreamTextArea
+  this add txtBody
 
   txtBody.cbAutoCmpPat = "[A-Z_]{2,}".r
 
-  System.setOut(txtBody.outStream)
-  System.setIn(txtBody.inStream)
+  System setOut txtBody.outStream
+  System setIn txtBody.inStream
 
-  setSize(400, 400)
-  setResizable(false)
-  setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE)
-  setVisible(true)
+  this setSize(400, 400)
+  this setResizable false
+  this setDefaultCloseOperation JFrame.EXIT_ON_CLOSE
+  this setVisible true
 }
