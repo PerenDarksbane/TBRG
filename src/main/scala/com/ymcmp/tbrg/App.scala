@@ -43,7 +43,7 @@ object App {
         Gender.FEMALE
       }
     }
-    println("Now, what race do you want your character to be? There are many, each with their own advantages. Click on one to learn about it, Don't worry, if you don't like your choice, you can come back and choose another. Here are the races: DWARF, ELF, GNOME, HALF-ELF, HALFLING, HALF-ORC, HUMAN, DARK ELF, DRAGONKIN, DEMONKIN.")
+    println("Now, what race do you want your character to be? There are many, each with their own advantages. Click on one to learn about it, Don't worry, if you don't like your choice, you can come back and choose another. Here are the races: DWARF, ELF, GNOME, HALF-ELF, HALFLING, HALF-ORC, HUMAN, DARK-ELF, DRAGONKIN, DEMONKIN.")
     val race = setupRace
     println("Adventurer, what is your profession? Pick your class! Again, you can always come back and remake your choice after learning about each class. The classes are: MAGE, CLERIC, PALADIN, WARRIOR, ARCHER, ROGUE, and MONK. Each class has multiple subclasses.")
     val ctype = setupClass
@@ -63,11 +63,11 @@ object App {
       case "cleric" | "c" =>
         setupSelectionInfo(setupClassCleric, setupClass, "Clerics gain their powers from religious devotion to the gods or all powerful beings. They use spells primarily to defend and heal. They value wisdom. They have many subclasses. They are: WARLOCKE, PRIEST, and NECROMANCER.")
       case "paladin" | "p" =>
-        setupSelectionInfo(setupClassPaladin, setupClass, "Paladins use either religious power or magic to aid them in battle. They value strength as well as intelligence or wisdom. They have many subclasses. They are: BATTLEMAGE, TEMPLAR, and PHASE KNIGHT.")
+        setupSelectionInfo(setupClassPaladin, setupClass, "Paladins use either religious power or magic to aid them in battle. They value strength as well as intelligence or wisdom. They have many subclasses. They are: BATTLEMAGE, TEMPLAR, and PHASE-KNIGHT.")
       case "warrior" | "w" =>
         setupSelectionInfo(setupClassWarrior, setupClass, "Warriors specialize in melee engagement and weapons handling. They value strength and constitution. They have many subclasses. They are: KNIGHT, BRUTE, and WEAPONSMASTER.")
       case "archer" | "a" =>
-        setupSelectionInfo(setupClassArcher, setupClass, "Archers use ranged weapons primarily. They value dexterity and intelligence. They have many subclasses. They are: BOWMAN, ARCANE ARCHER, RANGER and FLINGER.")
+        setupSelectionInfo(setupClassArcher, setupClass, "Archers use ranged weapons primarily. They value dexterity and intelligence. They have many subclasses. They are: BOWMAN, ARCANE ARCHER, RANGER, and FLINGER.")
       case "rogue" | "r" =>
         setupSelectionInfo(setupClassRogue, setupClass, "Rogues are the sneakiest class. They value dexterity and charisma. They have many subclasses. They are: TRICKSTER, DECEIVER, and SCOUT.")
       case "monk" | "mo" =>
@@ -78,7 +78,7 @@ object App {
   }
 
   def setupClassMonk: CharacterTypes.Value = {
-    print("class-monk(ki master) >>")
+    print("class NINJA, DISCIPLE, KI MASTER (ki master) >>")
     io.StdIn.readLine().trim.toLowerCase match {
       case "ninja" | "n" =>
         setupSelectionInfo(CharacterTypes.NINJA, setupClassMonk, "Ninjas use both weapons and hand to hand combat.")
@@ -90,7 +90,7 @@ object App {
   }
 
   def setupClassRogue: CharacterTypes.Value = {
-    print("class-rogue(trickster) >>")
+    print("class TRICKSTER, DECEIVER, SCOUT (trickster) >>")
     io.StdIn.readLine().trim.toLowerCase match {
       case "scout" | "s" =>
         setupSelectionInfo(CharacterTypes.SCOUT, setupClassRogue, "Scouts use weapons and stealth to out think and defeat their opponents.")
@@ -102,7 +102,7 @@ object App {
   }
 
   def setupClassArcher: CharacterTypes.Value = {
-    print("class-archer(arcane archer) >>")
+    print("class BOWMAN, ARCANE ARCHER, RANGER, FLINGER (arcane archer) >>")
     io.StdIn.readLine().trim.toLowerCase match {
       case "ranger" | "r" =>
         setupSelectionInfo(CharacterTypes.RANGER, setupClassArcher, "Rangers use bows in short range combat.")
@@ -116,7 +116,7 @@ object App {
   }
 
   def setupClassWarrior: CharacterTypes.Value = {
-    print("class-warrior(weaponmaster) >>")
+    print("class KNIGHT, BRUTE, WEAPONSMASTER (weaponmaster) >>")
     io.StdIn.readLine().trim.toLowerCase match {
       case "knight" | "k" =>
         setupSelectionInfo(CharacterTypes.KNIGHT, setupClassWarrior, "Knights use swords and shields as well as heavy armour.")
@@ -128,9 +128,9 @@ object App {
   }
 
   def setupClassPaladin: CharacterTypes.Value = {
-    print("class-paladin(templar) >>")
+    print("class BATTLEMAGE, TEMPLAR, PHASE-KNIGHT (templar) >>")
     io.StdIn.readLine().trim.toLowerCase match {
-      case "phase knight" | "p" =>
+      case "phase-knight" | "p" =>
         setupSelectionInfo(CharacterTypes.PHASE_KNIGHT, setupClassPaladin, "Phase knights use illusionary magic as well as weaponry.")
       case "battlemage" | "b" =>
         setupSelectionInfo(CharacterTypes.BATTLEMAGE, setupClassPaladin, "Battlemages use elementalist magic and weaponry.")
@@ -140,7 +140,7 @@ object App {
   }
 
   def setupClassCleric: CharacterTypes.Value = {
-    print("class-cleric(warlocke) >>")
+    print("class WARLOCKE, PRIEST, NECROMANCER (warlocke) >>")
     io.StdIn.readLine().trim.toLowerCase match {
       case "priest" | "p" =>
         setupSelectionInfo(CharacterTypes.PRIEST, setupClassCleric, "Priests use religious power and divine favor to power their spells.")
@@ -152,7 +152,7 @@ object App {
   }
 
   def setupClassMage: CharacterTypes.Value = {
-    print("class-mage(elementalist) >>")
+    print("class DRUID, SUMMONER, ELEMENTALIST, ILLUSIONIST (elementalist) >>")
     io.StdIn.readLine().trim.toLowerCase match {
       case "summoner" | "s" =>
         setupSelectionInfo(CharacterTypes.SUMMONER, setupClassMage, "Summoners summon minions to fight for them.")
@@ -169,31 +169,31 @@ object App {
     print("race(human) >>")
     io.StdIn.readLine().trim.toLowerCase match {
       case "dwarf" | "d" | "dw" =>
-        setupSelectionInfo(Race.DWARF, setupRace, "Dwarfs are known for living in underground mining strongholds and searching for precious metals. They are shorter than humans ranging 4 to 5 feet tall. Dwarfs are very stout and strong, despite their size. They mature at the same rate as humans and live the same amount of time and are very resilient and tough. They often dislike being outside and are able to navigate caves with ease. They can speak and write common, as well as their native language of Dwarvish. Their hair is often white and they are prone to growing beards. Their skin colour can range from a silverish colour to more of a brass tone. Do you want to be a DWARF?")
+        setupSelectionInfo(Race.DWARF, setupRace, "Dwarfs are known for living in underground mining strongholds and searching for precious metals. They are shorter than humans ranging 4 to 5 feet tall. Dwarfs are very stout and strong, despite their size. They mature at the same rate as humans and live the same amount of time and are very resilient and tough. They often dislike being outside and are able to navigate caves with ease. They can speak and write common, as well as their native language of Dwarvish. Their hair is often white and they are prone to growing beards. Their skin colour can range from a silverish colour to more of a brass tone. Do you want to be a dwarf?")
       case "elf" | "e" =>
-        setupSelectionInfo(Race.ELF, setupRace, "Elves are known for being in tune with nature. They live and mature ten times more slowly than humans and are about a foot taller. They have a very slender frame and are often agile and have good eyesight. Magic comes naturally to elves and they are often very intelligent. They live primarily in forest villages although some live in human cities. Their skin tone varies greatly, as do eye colour and hair colour. They have pointed ears and cannot grown facial hair. They can speak and write common, elvish and arcanic. The elves dislike cramped dark spaces and are able to navigate forests with ease. Do you want to be an ELF?")
+        setupSelectionInfo(Race.ELF, setupRace, "Elves are known for being in tune with nature. They live and mature ten times more slowly than humans and are about a foot taller. They have a very slender frame and are often agile and have good eyesight. Magic comes naturally to elves and they are often very intelligent. They live primarily in forest villages although some live in human cities. Their skin tone varies greatly, as do eye colour and hair colour. They have pointed ears and cannot grown facial hair. They can speak and write common, elvish and arcanic. The elves dislike cramped dark spaces and are able to navigate forests with ease. Do you want to be an elf?")
       case "gnome" | "g" =>
-        setupSelectionInfo(Race.GNOME, setupRace, "Gnomes are known for living in a great variety of places. Some enjoy the peacefulness of nature while others enjoy the organized life of a city. They are much shorter than humans, around 2-4 feet tall. Gnomes are often very curious and intelligent, yet can also be timid at times. There are very few gnome adventurers as many consider the job as \"uncivilized and dangerous\". Gnomes are often tinkerers, creating little gadgets and artifacts to help them in their journeys. Gnomes live half as long as humans and mature twice as fast. Their skin tone is often a pasty yellow or green and they usually have completely black eyes. Their hair colour is usually wild compared to the other races. They can write and speak gnomish and common. They are often very good at puzzles. Do you want to be a GNOME?")
+        setupSelectionInfo(Race.GNOME, setupRace, "Gnomes are known for living in a great variety of places. Some enjoy the peacefulness of nature while others enjoy the organized life of a city. They are much shorter than humans, around 2-4 feet tall. Gnomes are often very curious and intelligent, yet can also be timid at times. There are very few gnome adventurers as many consider the job as \"uncivilized and dangerous\". Gnomes are often tinkerers, creating little gadgets and artifacts to help them in their journeys. Gnomes live half as long as humans and mature twice as fast. Their skin tone is often a pasty yellow or green and they usually have completely black eyes. Their hair colour is usually wild compared to the other races. They can write and speak gnomish and common. They are often very good at puzzles. Do you want to be a gnome?")
       case "half-elf" | "he" =>
-        setupSelectionInfo(Race.HALF_ELF, setupRace, "Half-elves are what happen when humans and elves have children. They have the pointed elvish ears but can grow facial hair. Their skin tone, eye colour and hair colour vary. They tend to be innately magical but often live in human cities more than their elvish counterparts. They range from human height to elf height. They can speak and write common and elvish. Often \nhalf-elves are intelligent, however they are not as agile as their elvish kin. Half-elves mature at a human rate, but once they reach adulthood their aging stops and they can live until 500 years old. Do you want to be a HALF-ELF?")
+        setupSelectionInfo(Race.HALF_ELF, setupRace, "Half-elves are what happen when humans and elves have children. They have the pointed elvish ears but can grow facial hair. Their skin tone, eye colour and hair colour vary. They tend to be innately magical but often live in human cities more than their elvish counterparts. They range from human height to elf height. They can speak and write common and elvish. Often \nhalf-elves are intelligent, however they are not as agile as their elvish kin. Half-elves mature at a human rate, but once they reach adulthood their aging stops and they can live until 500 years old. Do you want to be a half-elf?")
       case "halfling" | "hl" =>
-        setupSelectionInfo(Race.HALFLING, setupRace, "Halflings live as long as humans and are half as tall. There are no other differences. Do you want to be a HALFLING?")
+        setupSelectionInfo(Race.HALFLING, setupRace, "Halflings live as long as humans and are half as tall. There are no other differences. Do you want to be a halfling?")
       case "half-orc" | "ho" =>
-        setupSelectionInfo(Race.HALF_ORC, setupRace, "Half-orcs are what happen when humans and orcs have children. They usually have underbites and are taller than normal humans. Their skin is very leathery and they have the strength of an orc. They speak and write common and orcish. Often half-orcs aren't as bright as the average human and they often live in human settlements as they are often outcast by orcs. They mature slightly faster than humans and live till around 75 years of age. Often half-orcs have temper problems. Do you want to be a HALF-ORC?")
-      case "dark elf" | "de" =>
-        setupSelectionInfo(Race.DARK_ELF, setupRace, "Dark elves are a branch of the elvish people. Their lifespan is the same as an elf. Dark elves have elvish ears and a slender frame, but that is where the similarity ends. They live in underground cities, have bloodshot eyes, and semi-transparent pale skin. Their hair is dark black. Often these elves capture surface humanoids and use them as slaves. Most of them see the surfaces dwellers as inferior.  Any who reject this mindset are outcast from society. If you choose this race you would be one of these outcasts living on the surface. Do you want to be a DARK ELF?")
+        setupSelectionInfo(Race.HALF_ORC, setupRace, "Half-orcs are what happen when humans and orcs have children. They usually have underbites and are taller than normal humans. Their skin is very leathery and they have the strength of an orc. They speak and write common and orcish. Often half-orcs aren't as bright as the average human and they often live in human settlements as they are often outcast by orcs. They mature slightly faster than humans and live till around 75 years of age. Often half-orcs have temper problems. Do you want to be a half-orc?")
+      case "dark-elf" | "de" =>
+        setupSelectionInfo(Race.DARK_ELF, setupRace, "Dark elves are a branch of the elvish people. Their lifespan is the same as an elf. Dark elves have elvish ears and a slender frame, but that is where the similarity ends. They live in underground cities, have bloodshot eyes, and semi-transparent pale skin. Their hair is dark black. Often these elves capture surface humanoids and use them as slaves. Most of them see the surfaces dwellers as inferior.  Any who reject this mindset are outcast from society. If you choose this race you would be one of these outcasts living on the surface. Do you want to be a dark elf?")
       case "dragonkin" | "dg" =>
-        setupSelectionInfo(Race.DRAGONKIN, setupRace, "Dragonkin are a mysterious race. None know how they came to be, although there are many theories. They are taller than humans, have coloured scales and dragon-like facial features as well as a draconic tail. They are often stronger than the average human. They often live in isolation as they are often feared by society.  They mature slightly slower than humans, often reaching 125 years of age. They can speak and write draconic and common. Do you want to be a DRAGONKIN?")
+        setupSelectionInfo(Race.DRAGONKIN, setupRace, "Dragonkin are a mysterious race. None know how they came to be, although there are many theories. They are taller than humans, have coloured scales and dragon-like facial features as well as a draconic tail. They are often stronger than the average human. They often live in isolation as they are often feared by society.  They mature slightly slower than humans, often reaching 125 years of age. They can speak and write draconic and common. Do you want to be a dragonkin?")
       case "demonkin" | "dm" =>
-        setupSelectionInfo(Race.DEMONKIN, setupRace, "Demonkin were once humanoid, but their bloodline was cursed by a demon or devil. This resulted in stunted growth, shorter life span and cosmetic effects. They are about a foot smaller than humans,and they live until around 60. They have a reddish purple skin tone and horns on their heads. They often live in isolation as they are often feared by society. They can speak and write common and demonic. Do you want to be a DEMONKIN?")
+        setupSelectionInfo(Race.DEMONKIN, setupRace, "Demonkin were once humanoid, but their bloodline was cursed by a demon or devil. This resulted in stunted growth, shorter life span and cosmetic effects. They are about a foot smaller than humans,and they live until around 60. They have a reddish purple skin tone and horns on their heads. They often live in isolation as they are often feared by society. They can speak and write common and demonic. Do you want to be a demonkin?")
       case _ =>
-        setupSelectionInfo(Race.HUMAN, setupRace, "Humans are the most generic yet diverse people. They live in settlements ranging from isolation to capital cities. Most humans however prefer to live with others. They live on average to 100 years of age, where they then die of natural causes. Humans are naturally well liked among the other races. Skin color, eye color and hair color vary greatly, as do personality traits. Do you want to be a HUMAN?")
+        setupSelectionInfo(Race.HUMAN, setupRace, "Humans are the most generic yet diverse people. They live in settlements ranging from isolation to capital cities. Most humans however prefer to live with others. They live on average to 100 years of age, where they then die of natural causes. Humans are naturally well liked among the other races. Skin color, eye color and hair color vary greatly, as do personality traits. Do you want to be a human?")
     }
   }
 
   private def setupSelectionInfo[T](default: => T, elseClause: => T, info: String): T = {
     println(info)
-    print("confirm(n) >>")
+    print("confirm YES, NO (n) >>")
     if (io.StdIn.readBoolean())
       default
     else

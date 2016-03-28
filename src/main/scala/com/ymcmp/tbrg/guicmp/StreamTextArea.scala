@@ -5,6 +5,7 @@ import java.awt.event.{ActionEvent, ActionListener}
 import java.io._
 import java.util.StringTokenizer
 import javax.swing._
+import javax.swing.text.DefaultCaret
 
 import scala.util.matching.Regex
 
@@ -24,6 +25,7 @@ class StreamTextArea extends JPanel(new BorderLayout()) {
   textArea setWrapStyleWord true
   textArea setLineWrap true
   textArea setEditable false
+  textArea.getCaret.asInstanceOf[DefaultCaret] setUpdatePolicy DefaultCaret.ALWAYS_UPDATE
 
   inputBox setEditable true
 
@@ -48,19 +50,30 @@ class StreamTextArea extends JPanel(new BorderLayout()) {
   }) {
 
     override def println(x: scala.Any): Unit = {
-      val toks = new StringTokenizer(x.toString)
-      var s: String = ""
-      while (toks.hasMoreTokens) {
-        s = toks.nextToken
-        if ((cbAutoCmpPat findFirstIn s).isDefined) {
-          // No need to trim `s` since it was extracted at the tokenizer phase
-          while (s.matches(".+\\W$"))
-            s = s.substring(0, s.length - 1)
-          // Call trim here since word might have been "OPT ,"
-          inputBoxOptions.addElement(s.trim)
-        }
-      }
+      reRenderInputBox(x.toString)
       super.println(x)
+    }
+
+    override def print(x: String): Unit = {
+      reRenderInputBox(x)
+      super.print(x)
+    }
+  }
+
+  private def reRenderInputBox(x: String): Unit = {
+    val toks = new StringTokenizer(x)
+    var s: String = ""
+    while (toks.hasMoreTokens) {
+      s = toks.nextToken
+      if ((cbAutoCmpPat findFirstIn s).isDefined) {
+        // No need to trim `s` since it was extracted at the tokenizer phase
+        while (s.matches(".+\\W$"))
+          s = s.substring(0, s.length - 1)
+        // Call trim here since word might have been "OPT ,"
+        s = s.trim
+        if (0 > inputBoxOptions.getIndexOf(s))
+          inputBoxOptions.addElement(s)
+      }
     }
   }
 
